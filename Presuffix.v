@@ -453,7 +453,7 @@ Lemma prefix_iff_sublist {A: Type}:
     (exists j, j = length l1 /\ l1 = to_sublist_pos 0 j l2).
 Proof.
   split; intros.
-  - unfold prefix in H.
+  - unfold is_prefix in H.
     destruct H as [l3 H].
     exists (length l1).
     pose proof length_app l1 l3.
@@ -463,7 +463,7 @@ Proof.
   - destruct H as [j [? ?]].
     pose proof (f_equal (@length A) H0).
     rewrite length_sublist' in H1.
-    unfold prefix.
+    unfold is_prefix.
     exists (to_sublist_pos j (length l2) l2).
     rewrite <- sublist_self at 1 by eauto.
     rewrite (sublist_split 0 (length l2) j); try lia.
@@ -476,7 +476,7 @@ Lemma suffix_iff_sublist {A: Type}:
     (exists i, i = length l2 - length l1 /\ l1 = to_sublist_pos i (length l2) l2).
 Proof.
   split; intros.
-  - unfold suffix in H.
+  - unfold is_suffix in H.
     destruct H as [l3 H].
     exists (length l3).
     pose proof length_app l3 l1.
@@ -489,7 +489,7 @@ Proof.
   - destruct H as [i [? ?]].
     pose proof (f_equal (@length A) H0).
     rewrite length_sublist in H1 by lia.
-    unfold suffix.
+    unfold is_suffix.
     exists (to_sublist_pos 0 i l2).
     rewrite <- sublist_self at 1 by eauto.
     rewrite (sublist_split 0 (length l2) i); try lia.
@@ -499,14 +499,14 @@ Qed.
 Lemma nil_prefix {A: Type}:
   forall (l: list A), [] is_a_prefix_of l.
 Proof.
-  intros; unfold prefix.
+  intros; unfold is_prefix.
   exists l; easy.
 Qed.
 
 Lemma nil_suffix {A: Type}:
   forall (l: list A), [] is_a_suffix_of l.
 Proof.
-  intros; unfold suffix.
+  intros; unfold is_suffix.
   exists l. rewrite app_nil_r; easy.
 Qed.
 
@@ -555,7 +555,7 @@ Lemma prefix_app_iff {A: Type}:
 Proof.
   split; intros.
   - split. apply prefix_length, H.
-    unfold prefix in *.
+    unfold is_prefix in *.
     destruct H. exists (x ++ l3).
     rewrite H. rewrite app_assoc; auto.
   - destruct H as [H0 H1].
@@ -572,7 +572,7 @@ Lemma suffix_app_iff {A: Type}:
 Proof.
   split; intros.
   - split. apply suffix_length, H.
-    unfold suffix in *.
+    unfold is_suffix in *.
     destruct H. exists (l3 ++ x).
     rewrite H. rewrite app_assoc; auto.
   - destruct H as [H0 H1].

@@ -645,3 +645,7 @@ Proof.
   replace (Z.to_nat (n - 1) - Z.to_nat (m - 1))%nat with (Z.to_nat n - Z.to_nat m)%nat by lia.
   reflexivity.
 Qed.
+
+
+Definition Zlist_sum (l: list Z): Z := 
+  fold_right Z.add 0 l.
