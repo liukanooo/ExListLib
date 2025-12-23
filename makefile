@@ -12,8 +12,7 @@ DEP_FLAG = -Q $(CURRENT_DIR) ExListLib \
 		   -R ../sets SetsClass \
 		   -R ../ListLib ListLib
 
-EX_LIST_FILES = ZList.v \
-	InvertalList.v Nperm.v Presuffix.v Sorting.v
+EX_LIST_FILES = InvertalList.v Nperm.v
 
 FILES = \
  $(EX_LIST_FILES) \

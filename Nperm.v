@@ -3,9 +3,9 @@ Require Import Coq.Lists.List.
 Require Import Coq.Bool.Bool.
 Require Import Coq.Arith.Arith.
 Require Import Permutation.
-Require Import ListLib.Core.
-Require Import ListLib.Positional.
-Require Import ListLib.Basics.
+Require Import ListLib.Base.Inductive.
+Require Import ListLib.Base.Positional.
+Require Import ListLib.General.Forall.
 Import ListNotations.
 
 Definition nperm (s : list nat) : Prop := Permutation (seq O (length s)) s.

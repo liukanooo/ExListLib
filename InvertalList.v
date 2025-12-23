@@ -2,7 +2,7 @@ Require Import Lia.
 Require Import Coq.ZArith.ZArith.
 Require Import Coq.Lists.List.
 Require Import Coq.Sorting.Permutation.
-Require Import ExListLib.ZList.
+Require Import ListLib.General.Length.
 
 Import ListNotations.
 
@@ -186,8 +186,8 @@ Theorem increasing_interval_list_range :
     lo + (Zlength l) * (pace + 1) <= hi + pace + 1.
 Proof.
   intros. generalize dependent lo. 
-  induction l; simpl ; intros; auto.
-  - lia.
+  induction l ; intros; auto.
+  - simpl; lia.
   - inversion H2 ; subst.
     inversion H1 ; subst.
     apply Zle_lt_or_eq in H9.
@@ -228,7 +228,7 @@ Proof.
   pose proof (Zsort_perm l).
   assert (Zlength l = Zlength (Zsort l)).
   {
-     rewrite !Zlength_correct.
+     unfold Zlength.
      rewrite (Permutation_length H2) ; auto.
   }
   rewrite H3.
